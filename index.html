@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
 
+<!-- font-family: 'Lacquer', sans-serif;
+font-family: 'Squada One', cursive;
+font-family: 'Coda Caption', sans-serif;
+font-family: 'Indie Flower', cursive;
+font-family: 'Source Code Pro', monospace;
+font-family: 'Acme', sans-serif;
+font-family: 'Rajdhani', sans-serif;
+font-family: 'Caveat', cursive;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Fredoka One', cursive;
+font-family: 'Advent Pro', sans-serif;
+font-family: 'Knewave', cursive; -->
+
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Advent+Pro|Caveat|Coda+Caption:800|Fredoka+One|Indie+Flower|Knewave|Lacquer|Permanent+Marker|Rajdhani|Source+Code+Pro|Squada+One&display=swap" rel="stylesheet">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
 </head>
@@ -12,11 +26,25 @@
     //This is what creates the Twiddler Feed
 
     $(document).ready(function home() {
+
         var $body = $('body');
+        $($body).css('text-align', 'center');
+        $($body).css('background-color', '#5DA7FE');
+        $($body).css('font-family', 'Source Code Pro');
         $body.html('');
-        var moreButton = $('<button>More Twiddles</button>');
+
+        var $logo = $('<img src="twiddler.png">');
+        $logo.appendTo($body);
+        $($logo).css('height', '10vh');
+        $($logo).css('text-align', 'center');
+
+        var moreButton = $('<br><br><button>Get More Twiddles</button>');
+        $(moreButton).css('font-size','1.2rem');
         moreButton.appendTo($body);
-        $('body').css('background-color', '#9370DB');
+        $(moreButton).css('font-family', 'Coda Caption');
+        $(moreButton).css('border-radius', '10px');
+        $(moreButton).css('padding', '8px');
+        $(moreButton).css('color', '#5DA7FE');
         $(moreButton).click(() => { home() })
 
         var index = streams.home.length - 1;
@@ -31,14 +59,18 @@
             $($tweet).css('height', '10vh');
             $($tweet).css('margin-top', '3vh');
             $($tweet).css('border', 'solid 2px #4B0082');
-            console.log('This is the Time Created ' + tweet.created_at);
+            // console.log('This is the Time Created ' + tweet.created_at);
             var fullTime = tweet.created_at.toString();
             var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+
             $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+
             $($tweet).append("<br/><br/>" + time);
             $tweet.appendTo($body);  
             index -= 1;
+
         }
+
 
 
         // This shows the users tweets that you clicked on and creates a button to return home 
@@ -47,24 +79,33 @@
           
             let allText = $(this).html();
 
+
             function moreTwiddles(){
+
 
                 $body.html('');
 
-                var homeButton = $('<button>Twiddler Feed</button>');
+                
+
+                var homeButton = $('<button>Back To Twiddler Feed</button>');
                 homeButton.appendTo($body);
 
-                var moreUserTweetsButton = $('<button>More User Twiddles</button>');
-                moreUserTweetsButton.appendTo($body);
+                
 
                 // Trying to get more user specific tweets;
 
                 if (allText.includes('douglascalhoun')) {
-                    setInterval(() => {console.log(streams.users.douglascalhoun)}, 2000);
+
+                    var moreUserTweetsButton = $('<button>More Twiddles From Douglas</button>');
+                    moreUserTweetsButton.appendTo($body);
+                    
                     var index = streams.users.douglascalhoun.length - 1;
 
                     while (index >= 0) {
+
+                        var tweet = streams.users.douglascalhoun[index];
                         var $tweet = $('<div></div>');
+
                         $($tweet).css('text-align', 'center');
                         $($tweet).css('background-color', 'white');
                         $($tweet).css('width', '50vw');
@@ -72,19 +113,31 @@
                         $($tweet).css('height', '10vh');
                         $($tweet).css('margin-top', '3vh');
                         $($tweet).css('border', 'solid 2px #4B0082');
-                        $tweet.text('@' + streams.users.douglascalhoun[index].user + ': ' + streams.users.douglascalhoun[index].message).css('padding-top', '3vh');
+
+                        var fullTime = tweet.created_at.toString();
+                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+
+                        $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+                        $($tweet).append("<br/><br/>" + time);
                         $tweet.appendTo($body);
                         index -= 1;
-                    }
 
+                    }
+                   
                 }
 
                 if (allText.includes('@mracus')) {
-                    console.log(streams.users.mracus);
+
+                    var moreUserTweetsButton = $('<button>More Twiddles From Mracus</button>');
+                    moreUserTweetsButton.appendTo($body);
+
                     var index = streams.users.mracus.length - 1;
 
                     while (index >= 0) {
+
+                        var tweet = streams.users.mracus[index];
                         var $tweet = $('<div></div>');
+
                         $($tweet).css('text-align', 'center');
                         $($tweet).css('background-color', 'white');
                         $($tweet).css('width', '50vw');
@@ -92,18 +145,29 @@
                         $($tweet).css('height', '10vh');
                         $($tweet).css('margin-top', '3vh');
                         $($tweet).css('border', 'solid 2px #4B0082');
-                        $tweet.text('@' + streams.users.mracus[index].user + ': ' + streams.users.mracus[index].message).css('padding-top', '3vh');
+
+                        var fullTime = tweet.created_at.toString();
+                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+
+                        $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+                        $($tweet).append("<br/><br/>" + time);
                         $tweet.appendTo($body);
                         index -= 1;
                     }
                 }
 
                 if (allText.includes('@sharksforcheap')) {
-                    console.log(streams.users.sharksforcheap);
+
+                    var moreUserTweetsButton = $('<button>More Twiddles From Sharks</button>');
+                    moreUserTweetsButton.appendTo($body);
+                
                     var index = streams.users.sharksforcheap.length - 1;
 
                     while (index >= 0) {
+
+                        var tweet = streams.users.sharksforcheap[index];
                         var $tweet = $('<div></div>');
+
                         $($tweet).css('text-align', 'center');
                         $($tweet).css('background-color', 'white');
                         $($tweet).css('width', '50vw');
@@ -111,18 +175,29 @@
                         $($tweet).css('height', '10vh');
                         $($tweet).css('margin-top', '3vh');
                         $($tweet).css('border', 'solid 2px #4B0082');
-                        $tweet.text('@' + streams.users.sharksforcheap[index].user + ': ' + streams.users.sharksforcheap[index].message).css('padding-top', '3vh');
+
+                        var fullTime = tweet.created_at.toString();
+                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+
+                        $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+                        $($tweet).append("<br/><br/>" + time);
                         $tweet.appendTo($body);
                         index -= 1;
                     }
                 }
 
                 if (allText.includes('@shawndrost')) {
-                    console.log(streams.users.shawndrost);
+
+                    var moreUserTweetsButton = $('<button>More Twiddles From Shawn</button>');
+                    moreUserTweetsButton.appendTo($body);
+                   
                     var index = streams.users.shawndrost.length - 1;
 
                     while (index >= 0) {
+
+                        var tweet = streams.users.shawndrost[index];
                         var $tweet = $('<div></div>');
+
                         $($tweet).css('text-align', 'center');
                         $($tweet).css('background-color', 'white');
                         $($tweet).css('width', '50vw');
@@ -130,12 +205,19 @@
                         $($tweet).css('height', '10vh');
                         $($tweet).css('margin-top', '3vh');
                         $($tweet).css('border', 'solid 2px #4B0082');
-                        $tweet.text('@' + streams.users.shawndrost[index].user + ': ' + streams.users.shawndrost[index].message).css('padding-top', '3vh');
+
+                        var fullTime = tweet.created_at.toString();
+                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+
+                        $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+                        $($tweet).append("<br/><br/>" + time);
                         $tweet.appendTo($body);
                         index -= 1;
                     }
-                }
 
+
+                }
+                
                 $(homeButton).click(() => { home() });
                 $(moreUserTweetsButton).click(() => { moreTwiddles() });
 
@@ -146,6 +228,8 @@
         });
 
     });
+
+ $(time).css('font-family', 'Impact');
     </script>
 </body>
 
