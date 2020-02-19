@@ -97,7 +97,7 @@ font-family: 'Knewave', cursive; -->
             var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
             //String literal adds a class!!!!!!
-            $($tweet).html(`<p class = '${tweet.user}' style = 'margin-top: -1vh;'> @ ${tweet.user} : ${tweet.message} </p>`);
+            $($tweet).html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
 
             $(image).prependTo($tweet);
 
@@ -181,9 +181,9 @@ font-family: 'Knewave', cursive; -->
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.text('@' + tweet.user + ': ' + tweet.message);
+                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
-                $($tweet).append("<br/><br/>" + time);
+                $($tweet).append("<br/>" + time);
 
                 $tweet.appendTo($body);
                 index -= 1;
@@ -203,8 +203,12 @@ font-family: 'Knewave', cursive; -->
             $(moreUserTweetsButton).click(() => { moreDoug() });
             $(homeButton).click(() => { home() });
 
+            let doug1 = document.getElementsByClassName('douglascalhoun');
+            $(doug1).click(() => {moreDoug()});
 
         });
+
+
 
         //clicked on id!
         let shark1 = document.getElementsByClassName('sharksforcheap');
@@ -263,7 +267,7 @@ font-family: 'Knewave', cursive; -->
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.text('@' + tweet.user + ': ' + tweet.message);
+                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<br/><br/>" + time);
 
@@ -285,6 +289,8 @@ font-family: 'Knewave', cursive; -->
             $(moreUserTweetsButton).click(() => { moreSharks() });
             $(homeButton).click(() => { home() });
 
+            let shark1 = document.getElementsByClassName('sharksforcheap');
+            $(shark1).click(() => {moreSharks()});
 
         });
 
@@ -345,7 +351,7 @@ font-family: 'Knewave', cursive; -->
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.text('@' + tweet.user + ': ' + tweet.message);
+                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<br/><br/>" + time);
 
@@ -367,6 +373,8 @@ font-family: 'Knewave', cursive; -->
             $(moreUserTweetsButton).click(() => { moreShawn() });
             $(homeButton).click(() => { home() });
 
+            let shawn1 = document.getElementsByClassName('shawndrost');
+            $(shawn1).click(() => {moreShawn()});
 
         });
 
@@ -427,7 +435,7 @@ font-family: 'Knewave', cursive; -->
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.text('@' + tweet.user + ': ' + tweet.message);
+                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<br/><br/>" + time);
 
@@ -449,6 +457,8 @@ font-family: 'Knewave', cursive; -->
             $(moreUserTweetsButton).click(() => { moreMracus() });
             $(homeButton).click(() => { home() });
 
+            let mracus1 = document.getElementsByClassName('mracus');
+            $(mracus1).click(() => {moreMracus()});
 
         });
 
