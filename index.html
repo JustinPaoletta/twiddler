@@ -46,33 +46,76 @@ font-family: 'Knewave', cursive; -->
         $(moreButton).css('padding', '8px');
         $(moreButton).css('width', '20vw');
         $(moreButton).css('color', '#5DA7FE');
-        $(moreButton).click(() => { home() })
+        $(moreButton).click(() => { home() });
+
+   
+
 
         var index = streams.home.length - 1;
-        console.log(streams.home);
+
         while (index >= 0) {
+
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
+
+            var image = '<img class = "people" src=""><br><br><br>';
+
+            switch(tweet.user){
+
+                case 'douglascalhoun':
+                image = '<img class = "people" src="douglas.png"><br><br><br>';
+                break;
+
+                case 'shawndrost':
+                image = '<img class = "people" src="shawn.png"><br><br><br>';
+                break;
+
+                case 'mracus':
+                image = '<img class = "people" src="mracus.png"><br><br><br>';
+                break;
+
+                case 'sharksforcheap':
+                image = '<img class = "people" src="sharks.png"><br><br><br>';
+                break;
+
+            }
+     
+
             $($tweet).css('text-align', 'center');
             $($tweet).css('background-color', 'white');
             $($tweet).css('width', '50vw');
             $($tweet).css('margin-left', '25vw');
-            $($tweet).css('height', '10vh');
+            $($tweet).css('height', '20vh');
             $($tweet).css('margin-top', '3vh');
             $($tweet).css('border', 'solid 2px #404040');
+
             // console.log('This is the Time Created ' + tweet.created_at);
             var fullTime = tweet.created_at.toString();
             var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-            $tweet.text('@' + tweet.user + ': ' + tweet.message).css('padding-top', '3vh');
+
+            var tweetText = $tweet.text('@' + tweet.user + ': ' + tweet.message);
+
+            $(image).prependTo($tweet); 
+
 
             $($tweet).append("<br/><br/>" + time);
-            $tweet.appendTo($body);  
+
+            $tweet.appendTo($body);
+
             index -= 1;
+
 
         }
 
-
+            $(".people").css('width','50px');
+            $(".people").css('border','solid 2px black');
+            $(".people").css('height','50px');
+            $(".people").css('position','absolute');
+            $(".people").css('margin-left','-23vw');
+            $(".people").css('margin-top','5vh');
+            $(".people").css('float','left');
+            $(".people").css('border-radius','50%');
 
         // This shows the users tweets that you clicked on and creates a button to return home 
 
@@ -264,7 +307,6 @@ font-family: 'Knewave', cursive; -->
 
     });
 
- $(time).css('font-family', 'Impact');
     </script>
 </body>
 
