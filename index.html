@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- font-family: 'Lacquer', sans-serif;
-font-family: 'Squada One', cursive;
-font-family: 'Coda Caption', sans-serif;
-font-family: 'Indie Flower', cursive;
-font-family: 'Source Code Pro', monospace;
-font-family: 'Acme', sans-serif;
-font-family: 'Rajdhani', sans-serif;
-font-family: 'Caveat', cursive;
-font-family: 'Permanent Marker', cursive;
-font-family: 'Fredoka One', cursive;
-font-family: 'Advent Pro', sans-serif;
-font-family: 'Knewave', cursive; -->
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Acme|Advent+Pro|Caveat|Coda+Caption:800|Fredoka+One|Indie+Flower|Knewave|Lacquer|Permanent+Marker|Rajdhani|Source+Code+Pro|Squada+One&display=swap" rel="stylesheet">
@@ -57,7 +45,6 @@ font-family: 'Knewave', cursive; -->
         while (index >= 0) {
 
             var tweet = streams.home[index];
-            console.log(tweet);
 
             var $tweet = $('<div></div>');
 
@@ -88,7 +75,7 @@ font-family: 'Knewave', cursive; -->
             $($tweet).css('background-color', 'white');
             $($tweet).css('width', '50vw');
             $($tweet).css('margin-left', '25vw');
-            $($tweet).css('height', '20vh');
+            $($tweet).css('height', '200px');
             $($tweet).css('margin-top', '3vh');
             $($tweet).css('border', 'solid 2px #404040');
 
@@ -97,27 +84,26 @@ font-family: 'Knewave', cursive; -->
             var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
             //String literal adds a class!!!!!!
-            $($tweet).html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+            $($tweet).html(`<p style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
 
             $(image).prependTo($tweet);
 
-
-            $($tweet).append("<br/>" + time);
+            $($tweet).append("<p style='margin-top: 0vh;'>" + time + "</p>");
 
             $tweet.appendTo($body);
 
             index -= 1;
 
-
         }
 
+        $('.people').click(() => console.log('I clicked the people'));
 
         $(".people").css('width', '50px');
         $(".people").css('border', 'solid 2px black');
         $(".people").css('height', '50px');
         $(".people").css('position', 'absolute');
-        $(".people").css('margin-left', '-23vw');
-        $(".people").css('margin-top', '5vh');
+        $(".people").css('margin-left', '-22vw');
+        $(".people").css('margin-top', '40px');
         $(".people").css('float', 'left');
         $(".people").css('border-radius', '50%');
 
@@ -127,7 +113,7 @@ font-family: 'Knewave', cursive; -->
         let doug1 = document.getElementsByClassName('douglascalhoun');
 
         $(doug1).click(function moreDoug() {
-            console.log('doug');
+           
             var $body = $('body');
             $body.html('');
 
@@ -174,16 +160,16 @@ font-family: 'Knewave', cursive; -->
                 $($tweet).css('background-color', 'white');
                 $($tweet).css('width', '50vw');
                 $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '20vh');
+                $($tweet).css('height', '200px');
                 $($tweet).css('margin-top', '3vh');
                 $($tweet).css('border', 'solid 2px #404040');
 
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+                $tweet.html(`<p style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
-                $($tweet).append("<br/>" + time);
+                $($tweet).append("<p style='margin-top: 0vh;'>" + time + "</p>");
 
                 $tweet.appendTo($body);
                 index -= 1;
@@ -194,8 +180,8 @@ font-family: 'Knewave', cursive; -->
             $(".people").css('border', 'solid 2px black');
             $(".people").css('height', '50px');
             $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-23vw');
-            $(".people").css('margin-top', '5vh');
+            $(".people").css('margin-left', '-22vw');
+            $(".people").css('margin-top', '40px');
             $(".people").css('float', 'left');
             $(".people").css('border-radius', '50%');
 
@@ -260,16 +246,16 @@ font-family: 'Knewave', cursive; -->
                 $($tweet).css('background-color', 'white');
                 $($tweet).css('width', '50vw');
                 $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '20vh');
+                $($tweet).css('height', '200px');
                 $($tweet).css('margin-top', '3vh');
                 $($tweet).css('border', 'solid 2px #404040');
 
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+                $tweet.html(`<p style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
-                $($tweet).append("<br/><br/>" + time);
+                $($tweet).append("<p style='margin-top: 0vh;'>" + time + "</p>");
 
                 $tweet.appendTo($body);
                 index -= 1;
@@ -280,8 +266,8 @@ font-family: 'Knewave', cursive; -->
             $(".people").css('border', 'solid 2px black');
             $(".people").css('height', '50px');
             $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-23vw');
-            $(".people").css('margin-top', '5vh');
+            $(".people").css('margin-left', '-22vw');
+            $(".people").css('margin-top', '40px');
             $(".people").css('float', 'left');
             $(".people").css('border-radius', '50%');
 
@@ -344,16 +330,16 @@ font-family: 'Knewave', cursive; -->
                 $($tweet).css('background-color', 'white');
                 $($tweet).css('width', '50vw');
                 $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '20vh');
+                $($tweet).css('height', '200px');
                 $($tweet).css('margin-top', '3vh');
                 $($tweet).css('border', 'solid 2px #404040');
 
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+                $tweet.html(`<p style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
-                $($tweet).append("<br/><br/>" + time);
+                $($tweet).append("<p style='margin-top: 0vh;'>" + time + "</p>");
 
                 $tweet.appendTo($body);
                 index -= 1;
@@ -364,8 +350,8 @@ font-family: 'Knewave', cursive; -->
             $(".people").css('border', 'solid 2px black');
             $(".people").css('height', '50px');
             $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-23vw');
-            $(".people").css('margin-top', '5vh');
+            $(".people").css('margin-left', '-22vw');
+            $(".people").css('margin-top', '40px');
             $(".people").css('float', 'left');
             $(".people").css('border-radius', '50%');
 
@@ -428,16 +414,16 @@ font-family: 'Knewave', cursive; -->
                 $($tweet).css('background-color', 'white');
                 $($tweet).css('width', '50vw');
                 $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '20vh');
+                $($tweet).css('height', '200px');
                 $($tweet).css('margin-top', '3vh');
                 $($tweet).css('border', 'solid 2px #404040');
 
                 var fullTime = tweet.created_at.toString();
                 var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
 
-                $tweet.html(`<p style = 'margin-top: -1vh;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+                $tweet.html(`<p style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
-                $($tweet).append("<br/><br/>" + time);
+                $($tweet).append("<p style='margin-top: 0vh;'>" + time + "</p>");
 
                 $tweet.appendTo($body);
                 index -= 1;
@@ -448,8 +434,8 @@ font-family: 'Knewave', cursive; -->
             $(".people").css('border', 'solid 2px black');
             $(".people").css('height', '50px');
             $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-23vw');
-            $(".people").css('margin-top', '5vh');
+            $(".people").css('margin-left', '-22vw');
+            $(".people").css('margin-top', '40px');
             $(".people").css('float', 'left');
             $(".people").css('border-radius', '50%');
 
@@ -463,263 +449,10 @@ font-family: 'Knewave', cursive; -->
         });
 
     });
+
+
     </script>
+
 </body>
 
 </html>
-<!-- 
- let allText = $(this).html();
-
-
-            function moreTwiddles(){
-
-
-                $body.html('');
-
-                var $logo = $('<img src="twiddler.png">');
-                $logo.appendTo($body);
-                $($logo).css('height', '10vh');
-                $($logo).css('text-align', 'center');
-                
-
-                var homeButton = $('<br><br><button>Back To Twiddler Feed</button>');
-                homeButton.appendTo($body);
-                $(homeButton).css('font-size','1.1rem');
-                $(homeButton).css('font-family', 'Coda Caption');
-                $(homeButton).css('border-radius', '10px');
-                $(homeButton).css('padding', '8px');
-                $(homeButton).css('width', '30vw');
-                $(homeButton).css('color', '#6495ED');
-
-                
-
-                // Trying to get more user specific tweets;
-
-                if (allText.includes('douglascalhoun')) {
-
-                    var moreUserTweetsButton = $('<br><br><button>More Twiddles From Douglas</button>');
-                    moreUserTweetsButton.appendTo($body);
-                    $(moreUserTweetsButton).css('font-size','1.1rem');
-                    $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-                    $(moreUserTweetsButton).css('border-radius', '10px');
-                    $(moreUserTweetsButton).css('padding', '8px');
-                    $(moreUserTweetsButton).css('width', '30vw');
-                    $(moreUserTweetsButton).css('color', '#404040');
-                    
-                    var index = streams.users.douglascalhoun.length - 1;
-
-                    while (index >= 0) {
-
-                        var tweet = streams.users.douglascalhoun[index];
-                        var $tweet = $('<div></div>');
-
-                        var image = '<img class = "people" src=""><br><br><br>';
-
-                        switch(tweet.user){
-                            case 'douglascalhoun':
-                            image = '<img class = "people" src="douglas.png"><br><br><br>';
-                            break;
-                        }  
-
-                        $($tweet).css('text-align', 'center');
-                        $($tweet).css('background-color', 'white');
-                        $($tweet).css('width', '50vw');
-                        $($tweet).css('margin-left', '25vw');
-                        $($tweet).css('height', '20vh');
-                        $($tweet).css('margin-top', '3vh');
-                        $($tweet).css('border', 'solid 2px #404040');
-
-                        var fullTime = tweet.created_at.toString();
-                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
-                        $tweet.text('@' + tweet.user + ': ' + tweet.message);
-                        $(image).prependTo($tweet);
-                        $($tweet).append("<br/><br/>" + time);
-
-                        $tweet.appendTo($body);
-                        index -= 1;
-
-                    }
-
-                        $(".people").css('width','50px');
-                        $(".people").css('border','solid 2px black');
-                        $(".people").css('height','50px');
-                        $(".people").css('position','absolute');
-                        $(".people").css('margin-left','-23vw');
-                        $(".people").css('margin-top','5vh');
-                        $(".people").css('float','left');
-                        $(".people").css('border-radius','50%');
-                   
-                }
-
-                if (allText.includes('@mracus')) {
-
-                    var moreUserTweetsButton = $('<br><br><button>More Twiddles From Mracus</button>');
-                    moreUserTweetsButton.appendTo($body);
-                    $(moreUserTweetsButton).css('font-size','1.1rem');
-                    $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-                    $(moreUserTweetsButton).css('border-radius', '10px');
-                    $(moreUserTweetsButton).css('padding', '8px');
-                    $(moreUserTweetsButton).css('width', '30vw');
-                    $(moreUserTweetsButton).css('color', '#404040');
-
-                    var index = streams.users.mracus.length - 1;
-
-                    while (index >= 0) {
-
-                        var tweet = streams.users.mracus[index];
-                        var $tweet = $('<div></div>');
-
-                        var image = '<img class = "people" src=""><br><br><br>';
-
-                        switch(tweet.user){
-                            case 'mracus':
-                            image = '<img class = "people" src="mracus.png"><br><br><br>';
-                            break;
-                        }  
-
-                        $($tweet).css('text-align', 'center');
-                        $($tweet).css('background-color', 'white');
-                        $($tweet).css('width', '50vw');
-                        $($tweet).css('margin-left', '25vw');
-                        $($tweet).css('height', '20vh');
-                        $($tweet).css('margin-top', '3vh');
-                        $($tweet).css('border', 'solid 2px #404040');
-
-                        var fullTime = tweet.created_at.toString();
-                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
-                        $tweet.text('@' + tweet.user + ': ' + tweet.message);
-                        $(image).prependTo($tweet);
-                        $($tweet).append("<br/><br/>" + time);
-                        $tweet.appendTo($body);
-                        index -= 1;
-                    }
-
-                        $(".people").css('width','50px');
-                        $(".people").css('border','solid 2px black');
-                        $(".people").css('height','50px');
-                        $(".people").css('position','absolute');
-                        $(".people").css('margin-left','-23vw');
-                        $(".people").css('margin-top','5vh');
-                        $(".people").css('float','left');
-                        $(".people").css('border-radius','50%');
-                }
-
-                if (allText.includes('@sharksforcheap')) {
-
-                    var moreUserTweetsButton = $('<br><br><button>More Twiddles From Sharks</button>');
-                    moreUserTweetsButton.appendTo($body);
-                    $(moreUserTweetsButton).css('font-size','1.1rem');
-                    $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-                    $(moreUserTweetsButton).css('border-radius', '10px');
-                    $(moreUserTweetsButton).css('padding', '8px');
-                    $(moreUserTweetsButton).css('width', '30vw');
-                    $(moreUserTweetsButton).css('color', '#404040');
-                
-                    var index = streams.users.sharksforcheap.length - 1;
-
-                    while (index >= 0) {
-
-                        var tweet = streams.users.sharksforcheap[index];
-                        var $tweet = $('<div></div>');
-
-                        var image = '<img class = "people" src=""><br><br><br>';
-
-                        switch(tweet.user){
-                            case 'sharksforcheap':
-                            image = '<img class = "people" src="sharks.png"><br><br><br>';
-                            break;
-                        }
-
-                        $($tweet).css('text-align', 'center');
-                        $($tweet).css('background-color', 'white');
-                        $($tweet).css('width', '50vw');
-                        $($tweet).css('margin-left', '25vw');
-                        $($tweet).css('height', '20vh');
-                        $($tweet).css('margin-top', '3vh');
-                        $($tweet).css('border', 'solid 2px #404040');
-
-                        var fullTime = tweet.created_at.toString();
-                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
-                        $tweet.text('@' + tweet.user + ': ' + tweet.message);
-                        $(image).prependTo($tweet);
-                        $($tweet).append("<br/><br/>" + time);
-                        $tweet.appendTo($body);
-                        index -= 1;
-                    }
-
-                        $(".people").css('width','50px');
-                        $(".people").css('border','solid 2px black');
-                        $(".people").css('height','50px');
-                        $(".people").css('position','absolute');
-                        $(".people").css('margin-left','-23vw');
-                        $(".people").css('margin-top','5vh');
-                        $(".people").css('float','left');
-                        $(".people").css('border-radius','50%');
-                }
-
-                if (allText.includes('@shawndrost')) {
-
-                    var moreUserTweetsButton = $('<br><br><button>More Twiddles From Shawn</button>');
-                    moreUserTweetsButton.appendTo($body);
-                    $(moreUserTweetsButton).css('font-size','1.1rem');
-                    $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-                    $(moreUserTweetsButton).css('border-radius', '10px');
-                    $(moreUserTweetsButton).css('padding', '8px');
-                    $(moreUserTweetsButton).css('width', '30vw');
-                    $(moreUserTweetsButton).css('color', '#404040');
-                   
-                    var index = streams.users.shawndrost.length - 1;
-
-                    while (index >= 0) {
-
-                        var tweet = streams.users.shawndrost[index];
-                        var $tweet = $('<div></div>');
-
-                        var image = '<img class = "people" src=""><br><br><br>';
-
-                        switch(tweet.user){
-                            case 'shawndrost':
-                            image = '<img class = "people" src="shawn.png"><br><br><br>';
-                            break;
-                        }
-
-                        $($tweet).css('text-align', 'center');
-                        $($tweet).css('background-color', 'white');
-                        $($tweet).css('width', '50vw');
-                        $($tweet).css('margin-left', '25vw');
-                        $($tweet).css('height', '20vh');
-                        $($tweet).css('margin-top', '3vh');
-                        $($tweet).css('border', 'solid 2px #404040');
-
-                        var fullTime = tweet.created_at.toString();
-                        var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
-                        $tweet.text('@' + tweet.user + ': ' + tweet.message);
-                        $(image).prependTo($tweet);
-                        $($tweet).append("<br/><br/>" + time);
-                        $tweet.appendTo($body);
-                        index -= 1;
-                    }
-
-                        $(".people").css('width','50px');
-                        $(".people").css('border','solid 2px black');
-                        $(".people").css('height','50px');
-                        $(".people").css('position','absolute');
-                        $(".people").css('margin-left','-23vw');
-                        $(".people").css('margin-top','5vh');
-                        $(".people").css('float','left');
-                        $(".people").css('border-radius','50%');
-
-
-                }
-                
-                $(homeButton).click(() => { home() });
-                $(moreUserTweetsButton).click(() => { moreTwiddles() });
-
-            }
-
-            moreTwiddles();
-             -->
