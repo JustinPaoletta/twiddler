@@ -9,14 +9,17 @@
 
 <body>
     <script>
-    //This is what creates the Twiddler Feed
-
     $(document).ready(function home() {
 
-        //Media Query Using Javascript!!!
+        let x = window.matchMedia("(max-width: 900px)");
+        let $body = $('body');
+        let homeButton = $('<br><br><button>Back To Twiddler Feed</button>'); 
+        let moreUserTweetsButton;
+        let $tweet = $('<div></div>');       
 
+        //Media Query Using Javascript!!!
         function mediaQuery(x) {
-            if (x.matches) { // If media query matches
+            if (x.matches) { // If x matches
                 $(".wholetweet").css("font-size", ".8rem");
                 $(".wholetweet").css("width", "25vw");
                 $(".wholetweet").css("margin-left", "12.5vw");
@@ -34,24 +37,22 @@
                 $(moreButton).css('font-size', '1.2rem');
             }
         }
-
-        var x = window.matchMedia("(max-width: 900px)")
-       
-
-        var $body = $('body');
+        //clear html from body
         $body.html('');
-
         $($body).css('text-align', 'center');
         $($body).css('background-color', '#5DA7FE');
         $($body).css('font-family', 'Source Code Pro');
+       
+        function appendLogo(){
+            let $logo = $('<img src="twiddler.png">');
+            $logo.appendTo($body);
+            $($logo).css('height', '10vh');
+            $($logo).css('text-align', 'center');
+        }
 
+        appendLogo();
 
-        var $logo = $('<img src="twiddler.png">');
-        $logo.appendTo($body);
-        $($logo).css('height', '10vh');
-        $($logo).css('text-align', 'center');
-
-        var moreButton = $('<br><br><button>Get More Twiddles</button>');
+        const moreButton = $('<br><br><button>Get More Twiddles</button>');
         $(moreButton).css('font-size', '1.2rem');
         moreButton.appendTo($body);
         $(moreButton).css('font-family', 'Coda Caption');
@@ -62,41 +63,7 @@
         $(moreButton).css('background-color', 'white');
         $(moreButton).click(() => { home() });
 
-
-
-
-        var index = streams.home.length - 1;
-
-
-        while (index >= 0) {
-
-            var tweet = streams.home[index];
-
-            var $tweet = $('<div></div>');
-
-            var image = '<img class = "people" src=""><br><br><br>';
-
-            switch (tweet.user) {
-
-                case 'douglascalhoun':
-                    image = '<img class = "people" src="douglas.png"><br><br><br>';
-                    break;
-
-                case 'shawndrost':
-                    image = '<img class = "people" src="shawn.png"><br><br><br>';
-                    break;
-
-                case 'mracus':
-                    image = '<img class = "people" src="mracus.png"><br><br><br>';
-                    break;
-
-                case 'sharksforcheap':
-                    image = '<img class = "people" src="sharks.png"><br><br><br>';
-                    break;
-
-            }
-
-
+        function tweetStyle(){
             $($tweet).css('text-align', 'center');
             $($tweet).css('background-color', 'white');
             $($tweet).css('width', '50vw');
@@ -104,108 +71,46 @@
             $($tweet).css('height', '200px');
             $($tweet).css('margin-top', '3vh');
             $($tweet).css('border', 'solid 2px #404040');
+        }
 
+        let index = streams.home.length - 1;
 
-            var fullTime = tweet.created_at.toString();
-            var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+        while (index >= 0) {
 
-            //String literal adds a class!!!!!!
+            let tweet = streams.home[index];
+            $tweet = $('<div></div>');
+            let image = '<img class = "people" src=""><br><br><br>';
+
+            switch (tweet.user) {
+                case 'douglascalhoun':
+                    image = '<img class = "people" src="douglas.png"><br><br><br>';
+                    break;
+                case 'shawndrost':
+                    image = '<img class = "people" src="shawn.png"><br><br><br>';
+                    break;
+                case 'mracus':
+                    image = '<img class = "people" src="mracus.png"><br><br><br>';
+                    break;
+                case 'sharksforcheap':
+                    image = '<img class = "people" src="sharks.png"><br><br><br>';
+                    break;
+
+            }
+
+            tweetStyle();
+
+            let fullTime = tweet.created_at.toString();
+            let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
             $($tweet).html(`<p class ="wholetweet"  style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
-
             $(image).prependTo($tweet);
-
             $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
-
             $tweet.appendTo($body);
-
             index -= 1;
 
         }
 
-        $('.people').click(() => console.log('I clicked the people'));
-
-        $(".people").css('width', '50px');
-        $(".people").css('border', 'solid 2px black');
-        $(".people").css('height', '50px');
-        $(".people").css('position', 'absolute');
-        $(".people").css('margin-left', '-22vw');
-        $(".people").css('margin-top', '40px');
-        $(".people").css('float', 'left');
-        $(".people").css('border-radius', '50%');
-
-        mediaQuery(x) // Call listener function at run time
-        x.addListener(mediaQuery) // Attach listener function on state changes
-
-
-        //clicked on class!
-        let doug1 = document.getElementsByClassName('douglascalhoun');
-
-        $(doug1).click(function moreDoug() {
-
-            var $body = $('body');
-            $body.html('');
-
-            var $logo = $('<img src="twiddler.png">');
-            $logo.appendTo($body);
-            $($logo).css('height', '10vh');
-            $($logo).css('text-align', 'center');
-
-            var homeButton = $('<br><br><button>Back To Twiddler Feed</button>');
-            homeButton.appendTo($body);
-            $(homeButton).css('font-size', '1.1rem');
-            $(homeButton).css('font-family', 'Coda Caption');
-            $(homeButton).css('border-radius', '10px');
-            $(homeButton).css('padding-left', '20px');
-            $(homeButton).css('padding-right', '20px');
-            $(homeButton).css('color', '#6495ED');
-            $(homeButton).css('background-color', 'white');
-
-
-            var moreUserTweetsButton = $('<br><br><button>More Twiddles From Douglas</button>');
-            moreUserTweetsButton.appendTo($body);
-            $(moreUserTweetsButton).css('font-size', '1.1rem');
-            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-            $(moreUserTweetsButton).css('border-radius', '10px');
-            $(moreUserTweetsButton).css('padding-left', '20px');
-            $(moreUserTweetsButton).css('padding-right', '20px');
-            $(moreUserTweetsButton).css('color', '#404040');
-            $(moreUserTweetsButton).css('background-color', 'white');
-
-            var index = streams.users.douglascalhoun.length - 1;
-
-            while (index >= 0) {
-
-                var tweet = streams.users.douglascalhoun[index];
-                var $tweet = $('<div></div>');
-
-                var image = '<img class = "people" src=""><br><br><br>';
-
-                switch (tweet.user) {
-                    case 'douglascalhoun':
-                        image = '<img class = "people" src="douglas.png"><br><br><br>';
-                        break;
-                }
-
-                $($tweet).css('text-align', 'center');
-                $($tweet).css('background-color', 'white');
-                $($tweet).css('width', '50vw');
-                $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '200px');
-                $($tweet).css('margin-top', '3vh');
-                $($tweet).css('border', 'solid 2px #404040');
-
-                var fullTime = tweet.created_at.toString();
-                var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
-                $tweet.html(`<p class ="wholetweet" style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
-                $(image).prependTo($tweet);
-                $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
-
-                $tweet.appendTo($body);
-                index -= 1;
-
-            }
-
+        function peopleStyle() {
+            $('.people').click(() => console.log('I clicked the people'));
             $(".people").css('width', '50px');
             $(".people").css('border', 'solid 2px black');
             $(".people").css('height', '50px');
@@ -214,11 +119,74 @@
             $(".people").css('margin-top', '40px');
             $(".people").css('float', 'left');
             $(".people").css('border-radius', '50%');
+        }
 
+        peopleStyle();
+
+        function appendHomeButton(){
+            homeButton.appendTo($body);
+            $(homeButton).css('font-size', '1.1rem');
+            $(homeButton).css('font-family', 'Coda Caption');
+            $(homeButton).css('border-radius', '10px');
+            $(homeButton).css('padding-left', '20px');
+            $(homeButton).css('padding-right', '20px');
+            $(homeButton).css('color', '#6495ED');
+            $(homeButton).css('background-color', 'white');
+        }
+
+        function getMoreUserTweetsButton(){
+            moreUserTweetsButton.appendTo($body);
+            $(moreUserTweetsButton).css('font-size', '1.1rem');
+            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
+            $(moreUserTweetsButton).css('border-radius', '10px');
+            $(moreUserTweetsButton).css('padding-left', '20px');
+            $(moreUserTweetsButton).css('padding-right', '20px');
+            $(moreUserTweetsButton).css('color', '#404040');
+            $(moreUserTweetsButton).css('background-color', 'white');
+        }
+
+        mediaQuery(x) // Call listener function at run time
+        x.addListener(mediaQuery) // Attach listener function on state changes
+
+        //clicked on class!
+        let doug1 = document.getElementsByClassName('douglascalhoun');
+
+        $(doug1).click(function moreDoug() {
+
+            $body.html('');
+            appendLogo();
+            appendHomeButton();
+            moreUserTweetsButton = $('<br><br><button>More Twiddles From Douglas</button>');            
+            getMoreUserTweetsButton();
+
+            let index = streams.users.douglascalhoun.length - 1;
+
+            while (index >= 0) {
+
+                let tweet = streams.users.douglascalhoun[index];
+                $tweet = $('<div></div>');
+                let image = '<img class = "people" src=""><br><br><br>';
+
+                if(tweet.user === 'douglascalhoun') {
+                    image = '<img class = "people" src="douglas.png"><br><br><br>';        
+                }
+
+                tweetStyle();
+
+                let fullTime = tweet.created_at.toString();
+                let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
+                $tweet.html(`<p class ="wholetweet" style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
+                $(image).prependTo($tweet);
+                $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
+                $tweet.appendTo($body); 
+                index -= 1;
+
+            }
+
+            peopleStyle();
 
             $(moreUserTweetsButton).click(() => { moreDoug() });
             $(homeButton).click(() => { home() });
-
             let doug1 = document.getElementsByClassName('douglascalhoun');
             $(doug1).click(() => { moreDoug() });
 
@@ -228,88 +196,45 @@
         });
 
 
-
         //clicked on class!
         let shark1 = document.getElementsByClassName('sharksforcheap');
 
         $(shark1).click(function moreSharks() {
-            var $body = $('body');
+
             $body.html('');
+            appendLogo();
+            appendHomeButton();
+            moreUserTweetsButton = $('<br><br><button>More Twiddles From Sharks</button>');
+            getMoreUserTweetsButton();
 
-            var $logo = $('<img src="twiddler.png">');
-            $logo.appendTo($body);
-            $($logo).css('height', '10vh');
-            $($logo).css('text-align', 'center');
-
-            var homeButton = $('<br><br><button>Back To Twiddler Feed</button>');
-            homeButton.appendTo($body);
-            $(homeButton).css('font-size', '1.1rem');
-            $(homeButton).css('font-family', 'Coda Caption');
-            $(homeButton).css('border-radius', '10px');
-            $(homeButton).css('padding-left', '20px');
-            $(homeButton).css('padding-right', '20px');
-            $(homeButton).css('color', '#6495ED');
-            $(homeButton).css('background-color', 'white');
-
-
-            var moreUserTweetsButton = $('<br><br><button>More Twiddles From Sharks</button>');
-            moreUserTweetsButton.appendTo($body);
-            $(moreUserTweetsButton).css('font-size', '1.1rem');
-            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-            $(moreUserTweetsButton).css('border-radius', '10px');
-            $(moreUserTweetsButton).css('padding-left', '20px');
-            $(moreUserTweetsButton).css('padding-right', '20px');
-            $(moreUserTweetsButton).css('color', '#404040');
-            $(moreUserTweetsButton).css('background-color', 'white');
-
-            var index = streams.users.sharksforcheap.length - 1;
+            let index = streams.users.sharksforcheap.length - 1;
 
             while (index >= 0) {
 
-                var tweet = streams.users.sharksforcheap[index];
-                var $tweet = $('<div></div>');
+                let tweet = streams.users.sharksforcheap[index];
+                $tweet = $('<div></div>');
+                let image = '<img class = "people" src=""><br><br><br>';
 
-                var image = '<img class = "people" src=""><br><br><br>';
-
-                switch (tweet.user) {
-                    case 'sharksforcheap':
-                        image = '<img class = "people" src="sharks.png"><br><br><br>';
-                        break;
+                if(tweet.user === 'sharksforcheap') {
+                    image = '<img class = "people" src="sharks.png"><br><br><br>';
                 }
 
-                $($tweet).css('text-align', 'center');
-                $($tweet).css('background-color', 'white');
-                $($tweet).css('width', '50vw');
-                $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '200px');
-                $($tweet).css('margin-top', '3vh');
-                $($tweet).css('border', 'solid 2px #404040');
+                tweetStyle();
 
-                var fullTime = tweet.created_at.toString();
-                var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
+                let fullTime = tweet.created_at.toString();
+                let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
                 $tweet.html(`<p class ="wholetweet" style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
-
                 $tweet.appendTo($body);
                 index -= 1;
 
             }
 
-            $(".people").css('width', '50px');
-            $(".people").css('border', 'solid 2px black');
-            $(".people").css('height', '50px');
-            $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-22vw');
-            $(".people").css('margin-top', '40px');
-            $(".people").css('float', 'left');
-            $(".people").css('border-radius', '50%');
-
+            peopleStyle();
 
             $(moreUserTweetsButton).click(() => { moreSharks() });
             $(homeButton).click(() => { home() });
-
             let shark1 = document.getElementsByClassName('sharksforcheap');
             $(shark1).click(() => { moreSharks() });
 
@@ -322,83 +247,41 @@
         let shawn1 = document.getElementsByClassName('shawndrost');
 
         $(shawn1).click(function moreShawn() {
-            var $body = $('body');
+   
             $body.html('');
+            appendLogo();
+            appendHomeButton();
+            moreUserTweetsButton = $('<br><br><button>More Twiddles From Shawn</button>');
+            getMoreUserTweetsButton();
 
-            var $logo = $('<img src="twiddler.png">');
-            $logo.appendTo($body);
-            $($logo).css('height', '10vh');
-            $($logo).css('text-align', 'center');
-
-            var homeButton = $('<br><br><button>Back To Twiddler Feed</button>');
-            homeButton.appendTo($body);
-            $(homeButton).css('font-size', '1.1rem');
-            $(homeButton).css('font-family', 'Coda Caption');
-            $(homeButton).css('border-radius', '10px');
-            $(homeButton).css('padding-left', '20px');
-            $(homeButton).css('padding-right', '20px');
-            $(homeButton).css('color', '#6495ED');
-            $(homeButton).css('background-color', 'white');
-
-
-            var moreUserTweetsButton = $('<br><br><button>More Twiddles From Shawn</button>');
-            moreUserTweetsButton.appendTo($body);
-            $(moreUserTweetsButton).css('font-size', '1.1rem');
-            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-            $(moreUserTweetsButton).css('border-radius', '10px');
-            $(moreUserTweetsButton).css('padding-left', '20px');
-            $(moreUserTweetsButton).css('padding-right', '20px');
-            $(moreUserTweetsButton).css('color', '#404040');
-            $(moreUserTweetsButton).css('background-color', 'white');
-
-            var index = streams.users.shawndrost.length - 1;
+            let index = streams.users.shawndrost.length - 1;
 
             while (index >= 0) {
 
-                var tweet = streams.users.shawndrost[index];
-                var $tweet = $('<div></div>');
+                let tweet = streams.users.shawndrost[index];
+                $tweet = $('<div></div>');
+                let image = '<img class = "people" src=""><br><br><br>';
 
-                var image = '<img class = "people" src=""><br><br><br>';
-
-                switch (tweet.user) {
-                    case 'shawndrost':
-                        image = '<img class = "people" src="shawn.png"><br><br><br>';
-                        break;
+                if(tweet.user === 'shawndrost') {
+                    image = '<img class = "people" src="shawn.png"><br><br><br>';
                 }
 
-                $($tweet).css('text-align', 'center');
-                $($tweet).css('background-color', 'white');
-                $($tweet).css('width', '50vw');
-                $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '200px');
-                $($tweet).css('margin-top', '3vh');
-                $($tweet).css('border', 'solid 2px #404040');
+                tweetStyle();
 
-                var fullTime = tweet.created_at.toString();
-                var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
+                let fullTime = tweet.created_at.toString();
+                let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
                 $tweet.html(`<p class ="wholetweet" style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
-
                 $tweet.appendTo($body);
                 index -= 1;
 
             }
 
-            $(".people").css('width', '50px');
-            $(".people").css('border', 'solid 2px black');
-            $(".people").css('height', '50px');
-            $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-22vw');
-            $(".people").css('margin-top', '40px');
-            $(".people").css('float', 'left');
-            $(".people").css('border-radius', '50%');
-
+            peopleStyle();
 
             $(moreUserTweetsButton).click(() => { moreShawn() });
             $(homeButton).click(() => { home() });
-
             let shawn1 = document.getElementsByClassName('shawndrost');
             $(shawn1).click(() => { moreShawn() });
 
@@ -411,83 +294,41 @@
         let mracus1 = document.getElementsByClassName('mracus');
 
         $(mracus1).click(function moreMracus() {
-            var $body = $('body');
+
             $body.html('');
+            appendLogo();
+            appendHomeButton();
+            moreUserTweetsButton = $('<br><br><button>More Twiddles From Mracus</button>');     
+            getMoreUserTweetsButton();
 
-            var $logo = $('<img src="twiddler.png">');
-            $logo.appendTo($body);
-            $($logo).css('height', '10vh');
-            $($logo).css('text-align', 'center');
-
-            var homeButton = $('<br><br><button>Back To Twiddler Feed</button>');
-            homeButton.appendTo($body);
-            $(homeButton).css('font-size', '1.1rem');
-            $(homeButton).css('font-family', 'Coda Caption');
-            $(homeButton).css('border-radius', '10px');
-            $(homeButton).css('padding-left', '20px');
-            $(homeButton).css('padding-right', '20px');
-            $(homeButton).css('color', '#6495ED');
-            $(homeButton).css('background-color', 'white');
-
-
-            var moreUserTweetsButton = $('<br><br><button>More Twiddles From Mracus</button>');
-            moreUserTweetsButton.appendTo($body);
-            $(moreUserTweetsButton).css('font-size', '1.1rem');
-            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-            $(moreUserTweetsButton).css('border-radius', '10px');
-            $(moreUserTweetsButton).css('padding-left', '20px');
-            $(moreUserTweetsButton).css('padding-right', '20px');
-            $(moreUserTweetsButton).css('color', '#404040');
-            $(moreUserTweetsButton).css('background-color', 'white');
-
-            var index = streams.users.mracus.length - 1;
+            let index = streams.users.mracus.length - 1;
 
             while (index >= 0) {
 
-                var tweet = streams.users.mracus[index];
-                var $tweet = $('<div></div>');
+                let tweet = streams.users.mracus[index];
+                $tweet = $('<div></div>');
+                let image = '<img class = "people" src=""><br><br><br>';
 
-                var image = '<img class = "people" src=""><br><br><br>';
-
-                switch (tweet.user) {
-                    case 'mracus':
-                        image = '<img class = "people" src="mracus.png"><br><br><br>';
-                        break;
+                if(tweet.user === 'mracus') {
+                    image = '<img class = "people" src="mracus.png"><br><br><br>';
                 }
 
-                $($tweet).css('text-align', 'center');
-                $($tweet).css('background-color', 'white');
-                $($tweet).css('width', '50vw');
-                $($tweet).css('margin-left', '25vw');
-                $($tweet).css('height', '200px');
-                $($tweet).css('margin-top', '3vh');
-                $($tweet).css('border', 'solid 2px #404040');
+                tweetStyle();
 
-                var fullTime = tweet.created_at.toString();
-                var time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
-
+                let fullTime = tweet.created_at.toString();
+                let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
                 $tweet.html(`<p class ="wholetweet" style = 'margin-top: -1vh; width:30vw; margin-left:10vw;'> @ <span style="color:blue; cursor:pointer" class ="${tweet.user}">${tweet.user}</span> : ${tweet.message} </p>`);
                 $(image).prependTo($tweet);
                 $($tweet).append("<p style='margin-top: 0vh;' class='tweettime'>" + time + "</p>");
-
                 $tweet.appendTo($body);
                 index -= 1;
 
             }
 
-            $(".people").css('width', '50px');
-            $(".people").css('border', 'solid 2px black');
-            $(".people").css('height', '50px');
-            $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-22vw');
-            $(".people").css('margin-top', '40px');
-            $(".people").css('float', 'left');
-            $(".people").css('border-radius', '50%');
-
+            peopleStyle();
 
             $(moreUserTweetsButton).click(() => { moreMracus() });
             $(homeButton).click(() => { home() });
-
             let mracus1 = document.getElementsByClassName('mracus');
             $(mracus1).click(() => { moreMracus() });
 
@@ -497,10 +338,6 @@
         });
 
     });
-
-
-
-
     </script>
 </body>
 
