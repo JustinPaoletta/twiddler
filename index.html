@@ -10,14 +10,14 @@
 <body>
     <script>
     $(document).ready(function home() {
-
-        let x = window.matchMedia("(max-width: 900px)");
+        // global variables
         let $body = $('body');
         let homeButton = $('<br><br><button>Back To Twiddler Feed</button>'); 
         let moreUserTweetsButton;
-        let $tweet = $('<div></div>');       
-
-        //Media Query Using Javascript!!!
+        let $tweet = $('<div></div>'); 
+             
+        //Reusable Functions
+        let x = window.matchMedia("(max-width: 900px)");
         function mediaQuery(x) {
             if (x.matches) { // If x matches
                 $(".wholetweet").css("font-size", ".8rem");
@@ -37,33 +37,15 @@
                 $(moreButton).css('font-size', '1.2rem');
             }
         }
-        //clear html from body
-        $body.html('');
-        $($body).css('text-align', 'center');
-        $($body).css('background-color', '#5DA7FE');
-        $($body).css('font-family', 'Source Code Pro');
-       
+        
         function appendLogo(){
             let $logo = $('<img src="twiddler.png">');
             $logo.appendTo($body);
             $($logo).css('height', '10vh');
             $($logo).css('text-align', 'center');
-        }
+        } 
 
-        appendLogo();
-
-        const moreButton = $('<br><br><button>Get More Twiddles</button>');
-        $(moreButton).css('font-size', '1.2rem');
-        moreButton.appendTo($body);
-        $(moreButton).css('font-family', 'Coda Caption');
-        $(moreButton).css('border-radius', '10px');
-        $(moreButton).css('padding', '8px');
-        $(moreButton).css('width', '30vw');
-        $(moreButton).css('color', '#5DA7FE');
-        $(moreButton).css('background-color', 'white');
-        $(moreButton).click(() => { home() });
-
-        function tweetStyle(){
+        function styleTweetDivs(){
             $($tweet).css('text-align', 'center');
             $($tweet).css('background-color', 'white');
             $($tweet).css('width', '50vw');
@@ -73,6 +55,61 @@
             $($tweet).css('border', 'solid 2px #404040');
         }
 
+        function stylePeopleDivs() {
+            $('.people').click(() => console.log('I clicked the people'));
+            $(".people").css('width', '50px');
+            $(".people").css('border', 'solid 2px black');
+            $(".people").css('height', '50px');
+            $(".people").css('position', 'absolute');
+            $(".people").css('margin-left', '-22vw');
+            $(".people").css('margin-top', '40px');
+            $(".people").css('float', 'left');
+            $(".people").css('border-radius', '50%');
+        }
+
+        function appendHomeButton(){
+            homeButton.appendTo($body);
+            $(homeButton).css('font-size', '1.1rem');
+            $(homeButton).css('font-family', 'Coda Caption');
+            $(homeButton).css('border-radius', '10px');
+            $(homeButton).css('padding-left', '20px');
+            $(homeButton).css('padding-right', '20px');
+            $(homeButton).css('color', '#6495ED');
+            $(homeButton).css('background-color', 'white');
+        }
+
+        function appendMoreUserTweetsButton(){
+            moreUserTweetsButton.appendTo($body);
+            $(moreUserTweetsButton).css('font-size', '1.1rem');
+            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
+            $(moreUserTweetsButton).css('border-radius', '10px');
+            $(moreUserTweetsButton).css('padding-left', '20px');
+            $(moreUserTweetsButton).css('padding-right', '20px');
+            $(moreUserTweetsButton).css('color', '#404040');
+            $(moreUserTweetsButton).css('background-color', 'white');
+        }
+
+        // clear html from body
+        $body.html('');
+        $($body).css('text-align', 'center');
+        $($body).css('background-color', '#5DA7FE');
+        $($body).css('font-family', 'Source Code Pro');
+
+        appendLogo();
+
+        // create and style moretweets button
+        const moreButton = $('<br><br><button>Get More Twiddles</button>');
+        $(moreButton).css('font-size', '1.2rem');
+        moreButton.appendTo($body);
+        $(moreButton).css('font-family', 'Coda Caption');
+        $(moreButton).css('border-radius', '10px');
+        $(moreButton).css('padding', '8px');
+        $(moreButton).css('width', '30vw');
+        $(moreButton).css('color', '#5DA7FE');
+        $(moreButton).css('background-color', 'white');
+        $(moreButton).click(() => { home() }); 
+
+        //loop through tweets in data generator, style and append to DOM
         let index = streams.home.length - 1;
 
         while (index >= 0) {
@@ -97,7 +134,7 @@
 
             }
 
-            tweetStyle();
+            styleTweetDivs();
 
             let fullTime = tweet.created_at.toString();
             let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
@@ -109,42 +146,7 @@
 
         }
 
-        function peopleStyle() {
-            $('.people').click(() => console.log('I clicked the people'));
-            $(".people").css('width', '50px');
-            $(".people").css('border', 'solid 2px black');
-            $(".people").css('height', '50px');
-            $(".people").css('position', 'absolute');
-            $(".people").css('margin-left', '-22vw');
-            $(".people").css('margin-top', '40px');
-            $(".people").css('float', 'left');
-            $(".people").css('border-radius', '50%');
-        }
-
-        peopleStyle();
-
-        function appendHomeButton(){
-            homeButton.appendTo($body);
-            $(homeButton).css('font-size', '1.1rem');
-            $(homeButton).css('font-family', 'Coda Caption');
-            $(homeButton).css('border-radius', '10px');
-            $(homeButton).css('padding-left', '20px');
-            $(homeButton).css('padding-right', '20px');
-            $(homeButton).css('color', '#6495ED');
-            $(homeButton).css('background-color', 'white');
-        }
-
-        function getMoreUserTweetsButton(){
-            moreUserTweetsButton.appendTo($body);
-            $(moreUserTweetsButton).css('font-size', '1.1rem');
-            $(moreUserTweetsButton).css('font-family', 'Coda Caption');
-            $(moreUserTweetsButton).css('border-radius', '10px');
-            $(moreUserTweetsButton).css('padding-left', '20px');
-            $(moreUserTweetsButton).css('padding-right', '20px');
-            $(moreUserTweetsButton).css('color', '#404040');
-            $(moreUserTweetsButton).css('background-color', 'white');
-        }
-
+        stylePeopleDivs();
         mediaQuery(x) // Call listener function at run time
         x.addListener(mediaQuery) // Attach listener function on state changes
 
@@ -157,7 +159,7 @@
             appendLogo();
             appendHomeButton();
             moreUserTweetsButton = $('<br><br><button>More Twiddles From Douglas</button>');            
-            getMoreUserTweetsButton();
+            appendMoreUserTweetsButton();
 
             let index = streams.users.douglascalhoun.length - 1;
 
@@ -171,7 +173,7 @@
                     image = '<img class = "people" src="douglas.png"><br><br><br>';        
                 }
 
-                tweetStyle();
+                styleTweetDivs();
 
                 let fullTime = tweet.created_at.toString();
                 let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
@@ -183,7 +185,7 @@
 
             }
 
-            peopleStyle();
+            stylePeopleDivs();
 
             $(moreUserTweetsButton).click(() => { moreDoug() });
             $(homeButton).click(() => { home() });
@@ -205,7 +207,7 @@
             appendLogo();
             appendHomeButton();
             moreUserTweetsButton = $('<br><br><button>More Twiddles From Sharks</button>');
-            getMoreUserTweetsButton();
+            appendMoreUserTweetsButton();
 
             let index = streams.users.sharksforcheap.length - 1;
 
@@ -219,7 +221,7 @@
                     image = '<img class = "people" src="sharks.png"><br><br><br>';
                 }
 
-                tweetStyle();
+                styleTweetDivs();
 
                 let fullTime = tweet.created_at.toString();
                 let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
@@ -231,7 +233,7 @@
 
             }
 
-            peopleStyle();
+            stylePeopleDivs();
 
             $(moreUserTweetsButton).click(() => { moreSharks() });
             $(homeButton).click(() => { home() });
@@ -252,7 +254,7 @@
             appendLogo();
             appendHomeButton();
             moreUserTweetsButton = $('<br><br><button>More Twiddles From Shawn</button>');
-            getMoreUserTweetsButton();
+            appendMoreUserTweetsButton();
 
             let index = streams.users.shawndrost.length - 1;
 
@@ -266,7 +268,7 @@
                     image = '<img class = "people" src="shawn.png"><br><br><br>';
                 }
 
-                tweetStyle();
+                styleTweetDivs();
 
                 let fullTime = tweet.created_at.toString();
                 let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
@@ -278,7 +280,7 @@
 
             }
 
-            peopleStyle();
+            stylePeopleDivs();
 
             $(moreUserTweetsButton).click(() => { moreShawn() });
             $(homeButton).click(() => { home() });
@@ -299,7 +301,7 @@
             appendLogo();
             appendHomeButton();
             moreUserTweetsButton = $('<br><br><button>More Twiddles From Mracus</button>');     
-            getMoreUserTweetsButton();
+            appendMoreUserTweetsButton();
 
             let index = streams.users.mracus.length - 1;
 
@@ -313,7 +315,7 @@
                     image = '<img class = "people" src="mracus.png"><br><br><br>';
                 }
 
-                tweetStyle();
+                styleTweetDivs();
 
                 let fullTime = tweet.created_at.toString();
                 let time = fullTime.replace('GMT-0500 (Eastern Standard Time)', 'EST');
@@ -325,7 +327,7 @@
 
             }
 
-            peopleStyle();
+            stylePeopleDivs();
 
             $(moreUserTweetsButton).click(() => { moreMracus() });
             $(homeButton).click(() => { home() });
